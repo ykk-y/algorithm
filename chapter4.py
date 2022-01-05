@@ -10,6 +10,12 @@
 다..세기? => 100만개 기준으로는 완전탐색도 생각해보기
 
 4-3
+1번한 뒤 2번을 하는건줄 알았지만, 1번 또는 2번이 따로 가능한지를 확인하는 문제
+    ->만약 이렇다면, 한 단계라도 벗어난 경우를 또 생각해서 if문으로 쪼개야 할듯 함. 합쳐서 하면 다시 체스판 안으로 들어오게 되는 경우가 생김
+
+char 표현을 ? -> 숫자로 바꾸기.. => ord() - ord('a')+1 => +1까지 해야 a부터 포함
+if 조건이 1부터인지, 0부터인지 확인
+
 
 4-4
 """
@@ -58,7 +64,47 @@ def solution_2(): #어라 ..? 모가 틀린거지.. -> 아 5959까지인데, 그
                     cnt+=1
     print(cnt)
 
+#solution_2()
 
+def solution_3():
+    pos = input()
+    move1 = [(2,1),(2,-1),(-2,1),(-2,-1)]
+    move2 = [(1,2),(1,-2),(-1,2),(-1,-2)]
+    cnt = 0
+    for i in range(4):
+        x, y = int(ord(pos[0]) - ord('a') + 1), int(pos[1])
+        tmpx = x+move1[i][0]
+        if tmpx < 1 or tmpx > 8:
+            continue
+        tmpy = y+move1[i][1]
+        if tmpy < 1 or tmpy > 8:
+            continue
+        x = tmpx
+        y = tmpy
+        for j in range(4):
+            tmpy = y + move2[j][1]
+            if tmpy < 1 or tmpy > 8:
+                continue
+            tmpx = x + move2[j][0]
+            if tmpx < 1 or tmpx > 8 :
+                continue
+            cnt +=1
+    print(cnt)
+#solution_3()
 
+def solution_3_2():
+    pos = input()
+    move = [(2,1),(2,-1),(-2,1),(-2,-1),(1,2),(1,-2),(-1,2),(-1,-2)]
+    cnt = 0
+    for i in range(8):
+        x, y = int(ord(pos[0]) - ord('a') + 1), int(pos[1])
+        tmpx = x+move[i][0]
+        if tmpx < 1 or tmpx > 8:
+            continue
+        tmpy = y+move[i][1]
+        if tmpy < 1 or tmpy > 8:
+            continue
+        cnt +=1
+    print(cnt)
 
-solution_2()
+solution_3_2()
