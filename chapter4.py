@@ -16,10 +16,65 @@
 char 표현을 ? -> 숫자로 바꾸기.. => ord() - ord('a')+1 => +1까지 해야 a부터 포함
 if 조건이 1부터인지, 0부터인지 확인
 
-
 4-4
+input()은 str .. map은 list 아니어도 가능
+1) 방향에 어떤 의미가 있지?=?인덱스 위치계산 ) 지나간 위치 표현은 어떻게 하지?
+3) 각 줄을 입력받고 확인하는 방법? 전체를 입력받고 확인하는 방법?
 """
-# L R U D 
+'''
+4 4
+1 1 0
+1 1 1 1
+1 0 0 1
+1 1 0 1
+1 1 1 1
+'''
+def solution_4():
+    N, M = map(int, input().split())
+    x, y, d = map(int, input().split())
+    #data = [0 for _ in range(N*M)]
+    #data = [ [0]*M  for _ in range(N)] # [[0]*개수] 를 해주면, 한 행에 N개의 요소를 갖는 배열이 생성됨 [0,0,0,0].    이거 아님[[0],[0],[0],[0]]
+    data = []
+    for i in range(N):
+        data.append(list(map(int, input().split())))  # 단순히 list를 대입하면 한줄밖에 안들어감
+
+#    for i in range(N):
+#       data = list(map(int, input().split())) # 단순히 list를 대입하면 한줄밖에 안들어감
+    #첫 육지를 찾아야하는데, 무조건 육지의 시작이 1,1에 있지 않을 수 있기 때문에, 처음에 다 입력받아야 할것같음
+    #방향을 볼 때도 한줄씩 입력받으면 문제생길것 같음
+    #왼쪽?? 파이썬은 음수도 가능하니 다행..
+    # 0일때 인덱스는 x,y-1 북->서
+    # 1 : x+1, y 동->남
+    # 2 : x, y+1 남->동
+    # 3 : x-1, y 서-> 남
+    is_stop=False
+    cnt=0
+    dxy=[(0,-1),(1,0),(0,1),(-1,0)]
+    for i in range(1,N):
+        for j in range(1,M):
+            for k in range(1,5):
+                dx, dy=dxy[d-k][0], dxy[d-k][1] #방향의 왼쪽을 봄
+                if data[x + dx][y + dy] == 0: #만약 바라본 방향이 안가본 육지라면
+                    data[i][j] = 1  #현재칸을 1(가본곳 처리)
+                    x, y = dx, dy  # 이동할 곳으로 지정(index)
+                    cnt +=1
+                elif k==4 : #뒤???바라보는 방향과 관련..dx dy가 앞을 보는거
+                    x ,y = -dx, -dy
+                    cnt -=1
+                    if  x==0 or x == N or y==0 or y==M :                 #만약 다 돈 것이고, 갈데가 없고 뒤가 바다이면
+                        is_stop=True
+            if is_stop:
+                print(cnt)
+                break
+        if is_stop:
+            break
+                # 만약 다 돈 것이고, 갈데가 없고 뒤가 바다가 아니라면
+                # 가봤다면 continue
+
+solution_4()
+
+
+# L R U D
 def solution_1(): #문제는 너무 반복적으로 복붙한 if문이 많음.. tmp와 일반변수 역할이 조금 중복됨.. list(input().split())는 안됨..
     N = int(input())
     walk = input().split()
@@ -107,4 +162,4 @@ def solution_3_2():
         cnt +=1
     print(cnt)
 
-solution_3_2()
+#solution_3_2()
