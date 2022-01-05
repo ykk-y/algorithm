@@ -32,7 +32,7 @@ input()은 str .. map은 list 아니어도 가능
 def solution_4():
     N, M = map(int, input().split())
     x, y, d = map(int, input().split())
-    #data = [0 for _ in range(N*M)]
+    #data = [0 for _ in range(N*M)] # 여기서 map에 하면 안됨
     #data = [ [0]*M  for _ in range(N)] # [[0]*개수] 를 해주면, 한 행에 N개의 요소를 갖는 배열이 생성됨 [0,0,0,0].    이거 아님[[0],[0],[0],[0]]
     data = []
     for i in range(N):
