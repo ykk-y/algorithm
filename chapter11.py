@@ -4,7 +4,38 @@
     =>갯수, 해당 숫자, result 에 대한 변수를 정해놓아야 비교가 가능할 것 같다.
 
 2. for문에서 처음 변수를 어떻게할지 고민했는데 그냥 for문 밖에서 한번 해주면 되는것 같다.
+3. 0과 1이 등장한 수를 각각 세어주고, 이전값과 비교하는 것이기 때문에 마지막에서 따로 빼서 다시 비교함
+    => 첫번째와 가장 마지막을 생각해주기
 """
+def solution_3():
+    S = input()
+    is_0= 0
+    is_1= 0
+    n=int(S[0])
+    for i in range(1,len(S)):
+        num=int(S[i])
+        if n == num:  #연속인 수 찾기.. 같으면
+            pass
+        else:   #다르면
+            if n == 0: # #이전이 0이면
+                is_0 +=1
+            else:
+                is_1 +=1 #이전이 1이면
+        n = num
+
+    if S[-2] != S[-1]:
+        if S[-1]==0:
+            is_0 +=1
+        else:
+            is_1 +=1
+
+    if is_0 < is_1:
+        print(is_0)
+    else:
+        print(is_1)
+
+solution_3()
+
 #02984
 def solution_2():
     x = input()
