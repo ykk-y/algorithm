@@ -6,7 +6,45 @@
 2. for문에서 처음 변수를 어떻게할지 고민했는데 그냥 for문 밖에서 한번 해주면 되는것 같다.
 3. 0과 1이 등장한 수를 각각 세어주고, 이전값과 비교하는 것이기 때문에 마지막에서 따로 빼서 다시 비교함
     => 첫번째와 가장 마지막을 생각해주기
+4. ??
+5. 내가 푼건 완전탐색. 그리디는..
 """
+#5 3
+#1 3 2 3 2
+
+#8 5
+#1 5 4 3 2 4 5 2
+
+def solution_5():
+    N,M=map(int,input().split())
+    x=list(map(int,input().split()))
+    x.sort()
+    result=0
+    for i in range(N):
+        for j in range(i+1,N):
+            if x[i]!=x[j]:
+                result+=1
+    print(result)
+solution_5()
+
+def solution_4():
+    is1=0#처음에 1이 안만들어지는 경우
+    isnot1=0# 처음에 1이 만들어지는 경우
+    N=int(input())
+    x = list(map(int,input().split()))
+    x.sort()
+    num=1
+    if x[0] !=1: # 맨처음이 1보다 큰 경우
+        print(1)
+    else: # 맨처음이 1
+        for i in range(len()): #처음에 보는 개수?
+            for i in range(len(x)): # 1 2 3 4 5
+                num+=1
+                n = x[i]
+
+
+
+
 def solution_3():
     S = input()
     is_0= 0
