@@ -15,8 +15,7 @@ def bfs(start):
      #큐에 들어가야하는게 어떤거지? #순서가 첫번째 말곤 없는데..? 아
     for a in range(start,N+1):
         queue.append(a)
-
-    while deque:
+    while queue:
         tmp = queue.popleft()
         for i in graph[tmp]: # 1 - 2,3
             if d[i]==0:
