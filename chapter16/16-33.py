@@ -57,19 +57,37 @@ for i in range(N):
     T.append(a)
     P.append(b)
 
-for j in range(1,N+1):
-    if j-1+T[j-1]>N:
-        break
-    if x[j]!=0: #채워진 경우
-        if T[j-1] == 1 :
-            x[j] = max(x[j], x[j - 2] + P[j-1])
-        else:
-            x[j-1+T[j-1]] = max(x[j - 2] + P[j-1],x[j-1+T[j-1]])
-    else: #비어있는 경우
-        if T[j-1] == 1 :
-            x[j] = max(x[j], x[j - 1] + P[j-1])
-        else:
-            p=j-1+T[j-1]
-            x[j-1+T[j-1]] = max(x[j - 1] + P[j-1],x[j-1+T[j-1]])
+def sol_1():
+    for j in range(1, N + 1):
+        if j - 1 + T[j - 1] > N:
+            break
+        if x[j] != 0:  # 채워진 경우
+            if T[j - 1] == 1:
+                x[j] = max(x[j], x[j - 2] + P[j - 1])
+            else:
+                x[j - 1 + T[j - 1]] = max(x[j - 2] + P[j - 1], x[j - 1 + T[j - 1]])
+        else:  # 비어있는 경우
+            if T[j - 1] == 1:
+                x[j] = max(x[j], x[j - 1] + P[j - 1])
+            else:
+                p = j - 1 + T[j - 1]
+                x[j - 1 + T[j - 1]] = max(x[j - 1] + P[j - 1], x[j - 1 + T[j - 1]])
 
+def sol_2():
+    for i in range(N):
+        m=0
+        for j in range(i+1):
+            m=max(x[j],m)
+        if T[i]+i>=N:
+            break
+        x[T[i]+i]=max(m+P[i],x[T[i]+i])#,x[i]+P[i])
+#sol_2()
+
+for i in range(N):
+    m=0
+    for j in range(i+1):
+        m=max(x[j],m)
+    if T[i]+i>N:
+        continue
+    x[T[i]+i]=max(m+P[i],x[T[i]+i])#,x[i]+P[i])
 print(max(x))
