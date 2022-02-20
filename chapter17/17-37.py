@@ -7,20 +7,21 @@ for i in range(m):
     if c < x[a][b]:
         x[a][b]=c
 
-for k in range(1,n+1):
-    for a in range(1,n+1):
-        for b in range(1,n+1):
-            x[a][b] = min(x[a][b],x[a][k]+x[k][b])
-
 for i in range(1,n+1):
     for j in range(1,n+1):
         if i==j:
             x[i][j]=0
 
+for k in range(1,n+1):
+    for a in range(1,n+1):
+        for b in range(1,n+1):
+            x[a][b] = min(x[a][b],x[a][k]+x[k][b])
+
+
+
 for i in range(1,n+1):
     for j in range(1,n+1):
         if x[i][j]==INF:
-            print('??')
             print(0, end=' ')
         else:
             print(x[i][j],end=' ')
